@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+---
+spring.profiles: default
+spring.profiles.active: docker
+
+---
+# Profile for local development
+spring.profiles: docker
+spring.profiles.include: "\
+  config-docker
+"

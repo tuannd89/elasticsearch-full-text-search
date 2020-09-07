@@ -122,6 +122,8 @@ When data is changed by CMS, we often notice to worker by message broker
 
 - Implement the searching query on Web API, enjoy the result
 
+- Furthermore, let see https://github.com/tuannd89/elasticsearch-full-text-search/tree/master/demo for a sample version
+
 ![](images/build_se.png)
 
 ## Challenges <a name="challenges"></a>

@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    expose:
+    - '3306'
+    ports:
+    - '3306:3306'
+    environment:
+    - MYSQL_ROOT_PASSWORD=123456
+    - MYSQL_USER=app
+    - MYSQL_PASSWORD=123456
+    - MYSQL_DATABASE=demo
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.0
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+volumes:
+  data01:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
